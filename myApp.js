@@ -1,6 +1,15 @@
 require('dotenv').config();
 mongoose = require('mongoose');
 
+// mongoose.connect(process.env.MONGO_URI).then(result => {
+//   console.log('Connected to db.');
+//   // Listen for requests
+//   app.listen(3000, 'localhost', 20, () => {
+//      console.log('Now listening for requests');
+//   });
+// }).catch(err => {
+//   console.log('Error while trying to connect to the database', err);
+// });
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Get the Schema
@@ -17,7 +26,17 @@ const personSchema = new Schema({
 let Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  const person = new Person({
+    name: 'John Doe',
+    age: 20,
+    favoriteFoods: ['Omlet', 'Fries', 'Peanut Butter']
+  });
+
+  person.save((err, data) => {
+    if (err) done(err);
+    if (data) done(null, data);
+  });
+  // done(null /*, data*/);
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
