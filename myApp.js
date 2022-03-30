@@ -102,6 +102,13 @@ const removeById = (personId, done) => {
       done(null, removedPerson);
     }
   });
+
+  // Person.findOneAndRemove({ _id: personId }, (err, removedPerson) => {
+  //   if (err) done(err);
+  //   if (person) {
+  //     done(null, removedPerson);
+  //   }
+  // });
   // done(null /*, data*/);
 };
 
