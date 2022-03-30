@@ -83,7 +83,6 @@ const findEditThenSave = (personId, done) => {
     }
   });
 
-  done(null /*, data*/);
 };
 
 const findAndUpdate = (personName, done) => {
